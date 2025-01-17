@@ -5,7 +5,7 @@ from utils import EMAILS, LOCATIONS
 
 def main(stdscr) -> None:
     stdscr.clear()
-    num = 1
+    num = 2
     location = ""
     location_picked = False
 
@@ -13,11 +13,14 @@ def main(stdscr) -> None:
     stdscr.keypad(True)
     stdscr.attron(curses.A_BOLD)
 
+    stdscr.addstr(0, 0, "Please select the location you worked at using enter or space:")
+
     for loc in LOCATIONS:
         stdscr.addstr(num, 0, "[ ] " + loc)
         num +=1
 
     x, y = 0, 0
+    
     stdscr.refresh()
     while not location_picked:
 
@@ -46,8 +49,14 @@ def main(stdscr) -> None:
         stdscr.refresh()
 
         if key == curses.KEY_ENTER or key == ord(" ") or key == ord("\r") or key == ord("\n"):
-            if 1 <= y <= len(LOCATIONS):
+            if 2 <= y <= len(LOCATIONS) + 1:
                 stdscr.addch(y, 1, "O")
+                location_picked = True
+                location = LOCATIONS[y - len(LOCATIONS) - 2]
+
+    stdscr.erase()
+    stdscr.addstr(0, 0, f"You have picked: {location}")
+    stdscr.refresh()
 
 
 
