@@ -1,5 +1,3 @@
-from curses import wrapper
-
 EMAILS = {
     "Person 1": "1email@gmail.com",
     "Person 2": "2email@gmail.com",
@@ -7,3 +5,4 @@ EMAILS = {
     "Person 4": "4email@gmail.com",
 }
 
+LOCATIONS = ["NACHSHONIM", "BISLACH", "TZEELIM", "SHIZAFON", "BAHALATZ", "OTHER"]
