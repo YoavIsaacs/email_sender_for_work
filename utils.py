@@ -1,6 +1,9 @@
+from curses import wrapper
 
-def main():
-    print("poo")
+EMAILS = {
+    "Person 1": "1email@gmail.com",
+    "Person 2": "2email@gmail.com",
+    "Person 3": "3mail@gmail.com",
+    "Person 4": "4email@gmail.com",
+}
 
-if __name__ == '__main__':
-    main()
