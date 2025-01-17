@@ -112,6 +112,58 @@ def main(stdscr) -> None:
         stdscr.refresh()
 
 
+    issues = {}
+    finished_issues = False
+
+    while not finished_issues:
+        curses.curs_set(0)
+        stdscr.keypad(True)
+        stdscr.attron(curses.A_BOLD)
+
+        stdscr.addstr(0, 0, "Please select the station you would like to add an issue to:")
+    
+        line = 1
+        for station in stations:
+            stdscr.addstr(line, 0, station)
+            line +=1
+    
+        x, y = 0, 0
+        station_picked = False
+        current_station = ""
+     
+        stdscr.refresh()
+        while not station_picked:
+    
+            char_under_cursor = stdscr.inch(y, x) & 0xFF
+            if char_under_cursor != ord(" "):
+                stdscr.addch(y, x, char_under_cursor, curses.A_REVERSE)
+            else:
+                stdscr.addch(y, x, ' ', curses.A_REVERSE)
+    
+            stdscr.refresh()
+    
+    
+            key = stdscr.getch()
+    
+            stdscr.addch(y, x, char_under_cursor if char_under_cursor != ord(" ") else " ")
+         
+            if key == curses.KEY_UP and y > 0:
+                y -= 1
+            elif key == curses.KEY_DOWN and y < curses.LINES:
+                y += 1
+            elif key == curses.KEY_LEFT and x > 0:
+                x -= 1
+            elif key == curses.KEY_RIGHT and x < curses.COLS:
+                x += 1
+    
+            stdscr.refresh()
+    
+            if key == curses.KEY_ENTER or key == ord(" ") or key == ord("\r") or key == ord("\n"):
+                if 2 <= y <= len(stations) + 1:
+                    station_picked = True
+                    station = stations[y = len(stations) -2]
+
+ 
 
 
     stdscr.getch()
