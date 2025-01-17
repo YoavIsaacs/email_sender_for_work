@@ -45,9 +45,9 @@ def main(stdscr) -> None:
 
         stdscr.refresh()
 
-        if key == curses.KEY_ENTER:
+        if key == curses.KEY_ENTER or key == ord(" ") or key == ord("\r") or key == ord("\n"):
             if 1 <= y <= len(LOCATIONS):
-                stdscr.addstr(y, 1, "O")
+                stdscr.addch(y, 1, "O")
 
 
 
