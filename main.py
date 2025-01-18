@@ -142,7 +142,6 @@ def main(stdscr) -> None:
     
             stdscr.refresh()
     
-    
             key = stdscr.getch()
     
             stdscr.addch(y, x, char_under_cursor if char_under_cursor != ord(" ") else " ")
@@ -161,8 +160,11 @@ def main(stdscr) -> None:
             if key == curses.KEY_ENTER or key == ord(" ") or key == ord("\r") or key == ord("\n"):
                 if 2 <= y <= len(stations) + 1:
                     station_picked = True
-                    station = stations[y = len(stations) -2]
+                    current_station = stations[y - len(stations) -2]
 
+        stdscr.erase()
+        stdscr.refresh()
+        stdscr.addstr(0, 0, f"Adding issue #{current_station} for ")
  
 
 
